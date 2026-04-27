@@ -229,3 +229,35 @@ keywords.forEach((word) => {
     }, 10000);
   }, 10000);
 });
+// SHOW CTA AFTER SCROLL
+const floatingCTA = document.querySelector(".floating-cta");
+
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 300) {
+    floatingCTA.style.opacity = "1";
+    floatingCTA.style.transform = "translateY(0)";
+  } else {
+    floatingCTA.style.opacity = "0";
+    floatingCTA.style.transform = "translateY(50px)";
+  }
+});
+let shown = false;
+
+document.addEventListener("mouseleave", (e) => {
+  if (e.clientY < 0 && !shown) {
+    shown = true;
+
+    const popup = document.createElement("div");
+    popup.className = "exit-popup";
+    popup.innerHTML = `
+      <div class="popup-box">
+        <h3>Wait! 🚀</h3>
+        <p>Get a FREE marketing strategy for your business.</p>
+        <a href="https://wa.me/917358182759" target="_blank" class="btn whatsapp">
+          Claim Now
+        </a>
+      </div>
+    `;
+    document.body.appendChild(popup);
+  }
+});
